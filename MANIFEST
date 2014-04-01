@@ -4,3 +4,15 @@ vim/.vimrc
 
 # GIT
 git/.gitconfig
+
+# BIN
+bin
+
+# ZSH
+zsh/prezto/zlogin=.zlogin
+zsh/prezto/zlogout=.zlogout
+zsh/prezto/zpreztorc=.zpreztorc
+zsh/prezto/zprofile=.zprofile
+zsh/prezto/zshenv=.zshenv
+zsh/prezto/zshrc=.zshrc
+zsh/prezto/=.zprezto
