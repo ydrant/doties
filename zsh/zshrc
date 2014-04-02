@@ -12,3 +12,61 @@ fi
 
 # Customize to your needs...
 
+function my_git_prompt_info() {
+  echo `~/bin/scm_status.py $terminfo[colors]`
+}
+
+function my_host_name() {
+  if [ -n "${SSH_CLIENT+x}" ]
+  then
+    echo @${HOST}
+  fi
+}
+
+PROMPT=$'%B%U%~%b%u $(my_git_prompt_info)\n%k%(!.%F{red}.)%n%f%U$(my_host_name)%u %(!.%F{red}.)>%f '
+RPROMPT=$'%B%(?,%*,%{\e[31m%}_%?_ %{\e[0m%})%b - %h'
+PROMPT2=$'%{\e[35m%}%_> %{\e[0m%}'
+PROMPT3=$'%{\e[33m%}?# %{\e[0m%}'
+PROMPT4=$'%{\e[32m%}+ %{\e[0m%}'
+
+REPORTTIME=2
+TIMEFMT="Real: %E User: %U System: %S Percent: %P Cmd: %J"
+
+# Automatically cd in to directories if it's not a command name.
+setopt auto_cd
+
+#
+export GREP_OPTIONS='--color=auto'
+export GREP_COLOR='1;32'
+
+SSH_DIR="$HOME/.ssh"
+SSH_ENV="$SSH_DIR/environment"
+
+function start_agent {
+     echo "Initialising new SSH agent..."
+     /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+     echo succeeded
+     chmod 600 "${SSH_ENV}"
+     . "${SSH_ENV}" > /dev/null
+     for identity ($identities) echo "Loading '$identity'" && /usr/bin/ssh-add $SSH_DIR/$identity;
+}
+
+function stop_agent {
+  kill -9  ${SSH_AGENT_PID}
+}
+
+# Source SSH settings, if applicable
+
+if [ -f "${SSH_ENV}" ]; then
+     . "${SSH_ENV}" > /dev/null
+     #ps ${SSH_AGENT_PID} doesn't work under cywgin
+     ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+         start_agent;
+     }
+else
+     start_agent;
+fi 
+
+
+
+

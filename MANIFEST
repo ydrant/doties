@@ -9,10 +9,10 @@ git/.gitconfig
 bin
 
 # ZSH
-zsh/prezto/zlogin=.zlogin
-zsh/prezto/zlogout=.zlogout
-zsh/prezto/zpreztorc=.zpreztorc
-zsh/prezto/zprofile=.zprofile
-zsh/prezto/zshenv=.zshenv
-zsh/prezto/zshrc=.zshrc
+zsh/zlogin=.zlogin
+zsh/zlogout=.zlogout
+zsh/zpreztorc=.zpreztorc
+zsh/zprofile=.zprofile
+zsh/zshenv=.zshenv
+zsh/zshrc=.zshrc
 zsh/prezto/=.zprezto
