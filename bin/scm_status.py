@@ -111,7 +111,6 @@ def main(argv):
   idx = '256'
   if len(argv) > 1:
     idx = argv[1]
-  print idx
   idx = color_idx.get(idx, 0)
   state = None
   for check in [check_git, check_svn]:
