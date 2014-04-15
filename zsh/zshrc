@@ -52,6 +52,7 @@ function start_agent {
 }
 
 function stop_agent {
+  rm -f ${SSH_ENV}
   kill -9  ${SSH_AGENT_PID}
 }
 
@@ -67,6 +68,7 @@ else
      start_agent;
 fi 
 
+export TERM="xterm-256color"
 
-
+export PATH=/home/yannick/anaconda/bin:$PATH
 

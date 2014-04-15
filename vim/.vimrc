@@ -65,7 +65,7 @@ if has('gui_running')
   " au InsertLeave * :colo oceandeep
 
   " choix de la police
-  set guifont=MonoSpace\ 12
+  set guifont=MonoSpace\ 10
   "set guifont=Ubuntu\ Mono\ for\ Powerline\ 14
   "set guifont=SourceCodePro\ for\ Powerline\ 10
 
