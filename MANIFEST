@@ -19,3 +19,4 @@ zsh/zprofile=.zprofile
 zsh/zshenv=.zshenv
 zsh/zshrc=.zshrc
 zsh/prezto/=.zprezto
+zsh=.zsh

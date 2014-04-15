@@ -3,6 +3,7 @@
 
 [alias]
   st = status
+  ap = add --patch
   ci = commit
   co = checkout
   w = whatchanged
