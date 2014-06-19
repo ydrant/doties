@@ -10,11 +10,16 @@ Bundle 'gmarik/vundle'
 
 Bundle 'itchyny/lightline.vim'
 Bundle 'klen/python-mode'
-Bundle 'davidhalter/jedi-vim'
+"Bundle 'davidhalter/jedi-vim'
 Bundle 'vim-scripts/comments.vim'
 Bundle 'vim-scripts/a.vim'
 Bundle 'vim-scripts/rainbow_parentheses.vim'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'ekalinin/Dockerfile.vim'
+
+" Add cool stuff for tmux
+Bundle 'jgdavey/tslime.vim'
+
 filetype plugin indent on
 
 syntax on
@@ -48,7 +53,7 @@ set history=500
 "" backup
 set backup
 "set backupdir=~/tmp/vim
-set bex=.bak
+"set bex=.bak
 "set directory=~/tmp/vim   " swap files
 set noswapfile            " It's 2012, Vim.
 
@@ -233,7 +238,7 @@ if has("autocmd")
   let noweb_fold_code=1
 
   " automatically delete trailing DOS-returns and trailing whitespaces
-  autocmd BufWritePre *.c,*.h,*.y,*.yy,*.l,*.ll,*.C,*.cpp,*.hh,*.cc,*.hxx,*.cxx,*.hpp,*.java,*.rb,*.py,*.m4,*.pl,*.pm,*.js,.vimrc silent! %s/[\r \t]\+$//
+  autocmd BufWritePre *.c,*.h,*.y,*.yy,*.l,*.ll,*.C,*.cpp,*.hh,*.cc,*.hxx,*.cxx,*.hpp,*.java,*.rb,*.py,*.m4,*.pl,*.pm,*.js,.vimrc,*.sql silent! %s/[\r \t]\+$//
 
 endif
 
@@ -330,3 +335,8 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
+
+"" Plugin tslime
+vmap <C-c><C-c> <Plug>SendSelectionToTmux
+nmap <C-c><C-c> <Plug>NormalModeSendToTmux
+nmap <C-c>r <Plug>SetTmuxVars
