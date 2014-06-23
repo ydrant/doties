@@ -7,6 +7,7 @@ import os
 
 
 def main():
+    toto = None
     timestamp = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
     configdir = os.path.abspath(os.path.dirname(__file__))
     homedir = os.path.expanduser('~')
