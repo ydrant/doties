@@ -4,10 +4,9 @@ from __future__ import absolute_import, print_function, unicode_literals
 
 import datetime
 import os
-
+import subprocess
 
 def main():
-    toto = None
     timestamp = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
     configdir = os.path.abspath(os.path.dirname(__file__))
     homedir = os.path.expanduser('~')
@@ -33,3 +32,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    subprocess.call(["fc-cache", "-vf", "~/.fonts"])
