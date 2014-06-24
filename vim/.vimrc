@@ -8,11 +8,12 @@ call vundle#rc()
 " required!
 Bundle 'gmarik/vundle'
 
-"Bundle 'itchyny/lightline.vim'
-Bundle 'klen/python-mode'
+"Bundle 'klen/python-mode'
 "Bundle 'davidhalter/jedi-vim'
-Bundle 'bling/vim-airline'
-Bundle 'scrooloose/syntastic'
+
+Bundle "bling/vim-airline"
+Bundle "scrooloose/syntastic"
+
 Bundle 'vim-scripts/comments.vim'
 Bundle 'vim-scripts/a.vim'
 Bundle 'vim-scripts/rainbow_parentheses.vim'
@@ -56,8 +57,13 @@ set history=500
 set backup
 "set backupdir=~/tmp/vim
 "set bex=.bak
+<<<<<<< HEAD
 "set directory=~/tmp/vim   " swap files
 set noswapfile            " It's 2012, Vim.
+=======
+"set directory=~/tmp/vim
+"set noswapfile
+>>>>>>> 2c7ff1449af587856dafd57a0319300c975477dd
 
 set background=dark
 
@@ -72,9 +78,9 @@ if has('gui_running')
   " au InsertLeave * :colo oceandeep
 
   " choix de la police
-  set guifont=MonoSpace\ 10
+  "set guifont=MonoSpace\ 10
   "set guifont=Ubuntu\ Mono\ for\ Powerline\ 14
-  "set guifont=SourceCodePro\ for\ Powerline\ 10
+  set guifont=SourceCodePro\ for\ Powerline\ 10
 
   " surligne la ligne courrante
 
@@ -148,11 +154,11 @@ if version >= 730
     " This, like swap and backups, uses .vim-undo first, then ~/.vim/undo
     " :help undo-persistence
     " This is only present in 7.3+
-    if isdirectory($HOME . '/tmp/vim/undo') == 0
-      :silent !mkdir -p ~/tmp/vim/undo > /dev/null 2>&1
-    endif
-    set undodir=./.vim-undo//
-    set undodir+=~/tmp/vim/undo/
+    "if isdirectory($HOME . '/tmp/vim/undo') == 0
+    "  :silent !mkdir -p ~/tmp/vim/undo > /dev/null 2>&1
+    "endif
+    set undodir=./.vim-undo/
+    "set undodir+=~/tmp/vim/undo/
     set undofile
   endif
 
@@ -188,15 +194,7 @@ if has("autocmd")
 
   " fichier python
   au FileType python set expandtab tabstop=4 softtabstop=4 shiftwidth=4 foldmethod=indent
-  let g:python_highlight_builtins=1
-  let g:python_highlight_exceptions=1
-  let g:python_highlight_string_formatting=1
-  let g:python_highlight_string_format=1
-  let g:python_highlight_string_templates=1
-  let g:python_highlight_indent_errors=1
-  let g:python_highlight_space_errors=1
-  let g:python_highlight_doctests=1
-  let g:python_highlight_all=1
+  let g:syntastic_python_checkers = ['flake8']
 
   " fichier Make
   au FileType make set noexpandtab shiftwidth=4
@@ -337,8 +335,15 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
+<<<<<<< HEAD
 
 "" Plugin tslime
 vmap <C-c><C-c> <Plug>SendSelectionToTmux
 nmap <C-c><C-c> <Plug>NormalModeSendToTmux
 nmap <C-c>r <Plug>SetTmuxVars
+=======
+let g:airline_powerline_fonts = 1
+let g:syntastic_check_on_open = 1
+
+" vim: set ts=2 sw=2 tw=78 et :
+>>>>>>> 2c7ff1449af587856dafd57a0319300c975477dd

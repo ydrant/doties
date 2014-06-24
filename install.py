@@ -4,7 +4,7 @@ from __future__ import absolute_import, print_function, unicode_literals
 
 import datetime
 import os
-
+import subprocess
 
 def main():
     timestamp = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
@@ -32,3 +32,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    subprocess.call(["fc-cache", "-vf", "~/.fonts"])

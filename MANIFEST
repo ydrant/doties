@@ -8,6 +8,9 @@ git/.gitconfig
 # BIN
 bin
 
+#FONTS
+fonts=.fonts
+
 # Dircolors
 dircolors=.dir_colors
 
