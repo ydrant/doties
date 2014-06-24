@@ -8,9 +8,11 @@ call vundle#rc()
 " required!
 Bundle 'gmarik/vundle'
 
-Bundle 'itchyny/lightline.vim'
+"Bundle 'itchyny/lightline.vim'
 Bundle 'klen/python-mode'
 "Bundle 'davidhalter/jedi-vim'
+Bundle 'bling/vim-airline'
+Bundle 'scrooloose/syntastic'
 Bundle 'vim-scripts/comments.vim'
 Bundle 'vim-scripts/a.vim'
 Bundle 'vim-scripts/rainbow_parentheses.vim'
