@@ -20,6 +20,13 @@ Bundle 'vim-scripts/rainbow_parentheses.vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'ekalinin/Dockerfile.vim'
 
+" Build this extension
+" cd ~/.vim/bundle/YouCompleteMe
+" ./install.sh --clang-completer
+Bundle 'Valloric/YouCompleteMe'
+
+Bundle 'kien/ctrlp.vim'
+
 " Add cool stuff for tmux
 Bundle 'jgdavey/tslime.vim'
 
@@ -57,13 +64,8 @@ set history=500
 set backup
 "set backupdir=~/tmp/vim
 "set bex=.bak
-<<<<<<< HEAD
-"set directory=~/tmp/vim   " swap files
-set noswapfile            " It's 2012, Vim.
-=======
 "set directory=~/tmp/vim
 "set noswapfile
->>>>>>> 2c7ff1449af587856dafd57a0319300c975477dd
 
 set background=dark
 
@@ -103,7 +105,7 @@ if has('gui_running')
   " tab : tabulations
   " trail : espace en fin de ligne
   " set list listchars=tab:>-,eol:¶
-  set list listchars=tab:▸\ ,eol:¶,extends:>,precedes:<,trail:-
+  set list listchars=nbsp:¬,tab:>-,eol:¶,extends:>,precedes:<,trail:-
   set foldmethod=syntax
   set foldenable
   set foldcolumn=5
@@ -335,15 +337,17 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
-<<<<<<< HEAD
 
 "" Plugin tslime
 vmap <C-c><C-c> <Plug>SendSelectionToTmux
 nmap <C-c><C-c> <Plug>NormalModeSendToTmux
 nmap <C-c>r <Plug>SetTmuxVars
-=======
-let g:airline_powerline_fonts = 1
-let g:syntastic_check_on_open = 1
 
-" vim: set ts=2 sw=2 tw=78 et :
->>>>>>> 2c7ff1449af587856dafd57a0319300c975477dd
+" Airline
+let g:airline_powerline_fonts = 1
+
+" Syntastic
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_style_error_symbol = '✠'
+let g:syntastic_warning_symbol = '∆'
+let g:syntastic_style_warning_symbol = '≈'
