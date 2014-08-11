@@ -8,17 +8,17 @@ call vundle#rc()
 " required!
 Bundle 'gmarik/vundle'
 
-"Bundle 'itchyny/lightline.vim'
-"Bundle 'klen/python-mode'
-"Bundle 'davidhalter/jedi-vim'
-
 Bundle "bling/vim-airline"
 Bundle "scrooloose/syntastic"
-
 Bundle 'vim-scripts/comments.vim'
 Bundle 'vim-scripts/a.vim'
 Bundle 'vim-scripts/rainbow_parentheses.vim'
+
+" Theme
 Bundle 'altercation/vim-colors-solarized'
+Bundle "vim-scripts/xoria256.vim"
+Bundle "Pychimp/vim-luna"
+
 filetype plugin indent on
 
 syntax on
@@ -87,7 +87,7 @@ if has('gui_running')
   set guioptions-=L
   set guioptions-=r
   set guioptions-=R
-  colorscheme solarized
+  colorscheme luna
 
   "" affiche les tab etc...
   " tab : tabulations
@@ -108,7 +108,8 @@ set foldlevel=100 " on ne veut pas que tout soit fermer à chaque fois
 
 if &t_Co == 256
   set background=dark
-  colorscheme solarized
+  colorscheme luna-term
+  let g:airline_theme='luna'
 endif
 
 "" Edition
