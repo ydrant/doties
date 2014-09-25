@@ -40,7 +40,8 @@ def check_git():
   r = exec_cmd(["git","symbolic-ref","HEAD"])
   if r[2] == 0:
     ret["scm"] = "git"
-    bname = r[1][0].split('/')[2].strip()
+    bname = r[1][0].split('/')[2:]
+    bname = "/".join([_.strip() for _ in bname])
     ret["branche"] = bname
     r = exec_cmd(["git","status","--porcelain"])
     if r[2] == 0:

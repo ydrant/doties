@@ -13,11 +13,13 @@ Bundle "scrooloose/syntastic"
 Bundle 'vim-scripts/comments.vim'
 Bundle 'vim-scripts/a.vim'
 Bundle 'vim-scripts/rainbow_parentheses.vim'
+Bundle 'henrik/vim-indexed-search'
 
 " Theme
 Bundle 'altercation/vim-colors-solarized'
-Bundle "vim-scripts/xoria256.vim"
-Bundle "Pychimp/vim-luna"
+Bundle 'vim-scripts/xoria256.vim'
+Bundle 'Pychimp/vim-luna'
+
 
 filetype plugin indent on
 
@@ -49,12 +51,17 @@ set hidden              " permet ouvrir un autre buffer sans enregistrer les mod
 
 set history=500
 
-"" backup
-set backup
-"set backupdir=~/tmp/vim
-"set bex=.bak
-"set directory=~/tmp/vim
-"set noswapfile
+"if isdirectory($HOME . '/.vim/tmp') == 0
+  ":silent !mkdir -p ~/.vim/tmp > /dev/null 2>&1
+"endif
+
+
+""" backup
+"set backup
+"set backupdir=~/.vim/tmp
+""set bex=.bak
+"set directory=~/.vim/tmp
+""set noswapfile
 
 set background=dark
 
@@ -87,10 +94,10 @@ if has('gui_running')
   set guioptions-=L
   set guioptions-=r
   set guioptions-=R
+  "colorscheme solarized
   colorscheme luna
 
   "" affiche les tab etc...
-  " tab : tabulations
   " tab : tabulations
   " trail : espace en fin de ligne
   " set list listchars=tab:>-,eol:¶
@@ -102,15 +109,13 @@ if has('gui_running')
 else
   " sans gui
   set t_Co=256
+  set background=dark
+  "colorscheme solarized
+  colorscheme luna-term
+  "let g:airline_theme='luna'
 endif
 set cursorline
 set foldlevel=100 " on ne veut pas que tout soit fermer à chaque fois
-
-if &t_Co == 256
-  set background=dark
-  colorscheme luna-term
-  let g:airline_theme='luna'
-endif
 
 "" Edition
 " pas de coupure de ligne
@@ -126,7 +131,6 @@ set modeline
 set ruler
 set laststatus=2
 
-
 " affiche les commandes
 set showcmd
 " affiche le mode courant INSERT, VISUAL, COMMAND ...
@@ -136,42 +140,41 @@ set wildmenu
 "set wildmode=list:full
 set wildignore+=*.mp3,*.zip,*.wav,*.dat,*.png,*.jpg,*.gif,rake/**,solr/**,*.yml,tmp/**,*.log
 
-
 set pastetoggle=<F2>
 
-if version >= 730
+if exists('&colorcolumn')
   set colorcolumn=80
-  if exists("+undofile")
-    " undofile - This allows you to use undos after exiting and restarting
-    " This, like swap and backups, uses .vim-undo first, then ~/.vim/undo
-    " :help undo-persistence
-    " This is only present in 7.3+
-    "if isdirectory($HOME . '/tmp/vim/undo') == 0
-    "  :silent !mkdir -p ~/tmp/vim/undo > /dev/null 2>&1
-    "endif
-    set undodir=./.vim-undo/
-    "set undodir+=~/tmp/vim/undo/
-    set undofile
-  endif
-
-  function! NumberToggle()
-    if(&relativenumber == 1)
-      set number
-    else
-      set relativenumber
-    endif
-  endfunc
-
-  nnoremap <C-l> :call NumberToggle()<cr>
-"else
-"  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+else
+   "Colorise la 80 colonne et apres 120eme ...
+  let &colorcolumn=80,".join(range(120,999),",")
+  highlight ColorColumn ctermbg=235 guibg=#073642
 endif
+
+if exists("+undofile")
+  " undofile - This allows you to use undos after exiting and restarting
+  " This, like swap and backups, uses .vim-undo first, then ~/.vim/undo
+  " :help undo-persistence
+  " This is only present in 7.3+
+  if isdirectory($HOME . '/.vim/undo') == 0
+    :silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
+  endif
+  set undodir+=~/.vim/undo/
+  set undofile
+endif
+
+function! NumberToggle()
+  set relativenumber!
+endfunc
+
+nnoremap <C-l> :call NumberToggle()<cr>
+"else
+  "au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+"endif
 
 let mapleader = ","
 
 " gestion des fichiers
 "
-"filetype plugin indent on
 
 if has("autocmd")
 
@@ -179,8 +182,7 @@ if has("autocmd")
   au Syntax * syn match Error /\s\+$/
 
   " réouverture des fichiers à la même position
-  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-     \| exe "normal g'\"" | endif
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
   " fichier C/C++
 
@@ -329,5 +331,12 @@ au Syntax * RainbowParenthesesLoadBraces
 
 let g:airline_powerline_fonts = 1
 let g:syntastic_check_on_open = 1
+
+let g:syntastic_python_checkers = ['pylint', 'pyflakes', 'pep8']
+
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
 
 " vim: set ts=2 sw=2 tw=78 et :
