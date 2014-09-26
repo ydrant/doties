@@ -70,7 +70,7 @@ fi
 
 export TERM="xterm-256color"
 
-export PATH=/home/yannick/anaconda/bin:$PATH
+export PATH=/home/yannick/anaconda/bin:~/bin:$PATH
 
 # couleur ls
 eval `dircolors ~/.dir_colors/dircolors.256dark`
@@ -78,5 +78,6 @@ eval `dircolors ~/.dir_colors/dircolors.256dark`
 # HL command line ala fish
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+export EDITOR=vim
 
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}.

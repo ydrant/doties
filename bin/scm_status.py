@@ -17,7 +17,7 @@ from subprocess import Popen, PIPE
 ESC="\e"
 color_idx = {'0': 2, '16':1, '256':0}
 color = {
-    "header"   : ["[%(scm)s:" + ESC + "[01;38;05;254m%(branche)s" + ESC +"[0m]", "[%(scm)s:" + ESC + "[5;37m%(branche)s" + ESC +"[0m]", "[%(scm)s:%(branche)s]"],
+    "header"   : ["[%(scm)s " + ESC + "[01;38;05;254m%(branche)s" + ESC +"[0m]", "[%(scm)s " + ESC + "[5;37m%(branche)s" + ESC +"[0m]", "[%(scm)s %(branche)s]"],
     "footer"   : ["", "", ""],
     "untracked": [ESC + "[01;38;05;33m U", ESC + "[5;34m U", " U"],
     "added"    : [ESC + "[01;38;05;64m A", ESC + "[5;32m A", " A"],
@@ -37,10 +37,11 @@ def exec_cmd(command):
 
 def check_git():
   ret = {}
-  r = exec_cmd(["git","symbolic-ref","HEAD"])
+  r = exec_cmd(["git", "symbolic-ref", "HEAD"])
   if r[2] == 0:
     ret["scm"] = "git"
-    bname = r[1][0].split('/')[2].strip()
+    bname = r[1][0].split('/')[2:]
+    bname = "/".join([n.strip() for n in bname])
     ret["branche"] = bname
     r = exec_cmd(["git","status","--porcelain"])
     if r[2] == 0:
