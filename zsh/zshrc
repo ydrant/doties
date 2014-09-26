@@ -36,19 +36,20 @@ TIMEFMT="Real: %E User: %U System: %S Percent: %P Cmd: %J"
 setopt auto_cd
 
 #
-export GREP_OPTIONS='--color=auto'
-export GREP_COLOR='1;32'
+export GREP_OPTIONS='--color=auto --line-number'
+export GREP_COLORS="mc=00;36:ms=31:mt=01;31"
 
 SSH_DIR="$HOME/.ssh"
 SSH_ENV="$SSH_DIR/environment"
 
 function start_agent {
-     echo "Initialising new SSH agent..."
-     /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-     echo succeeded
-     chmod 600 "${SSH_ENV}"
-     . "${SSH_ENV}" > /dev/null
-     for identity ($identities) echo "Loading '$identity'" && /usr/bin/ssh-add $SSH_DIR/$identity;
+  rm -f ${SSH_ENV}
+  echo "Initialising new SSH agent..."
+  /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+  echo succeeded
+  chmod 600 "${SSH_ENV}"
+  . "${SSH_ENV}" > /dev/null
+  for identity ($identities) echo "Loading '$identity'" && /usr/bin/ssh-add $SSH_DIR/$identity;
 }
 
 function stop_agent {
@@ -78,7 +79,8 @@ eval `dircolors ~/.dir_colors/dircolors.256dark`
 # HL command line ala fish
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-setopt NOSHarehistory
+setopt NO_SHARE_HISTORY
+setopt APPEND_HISTORY
 
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}.
 
