@@ -17,9 +17,12 @@ Bundle 'henrik/vim-indexed-search'
 
 " Theme
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'vim-scripts/xoria256.vim'
 Bundle 'Pychimp/vim-luna'
 
+Bundle 'ekalinin/Dockerfile.vim'
+
+" Add cool stuff for tmux
+Bundle 'jgdavey/tslime.vim'
 
 filetype plugin indent on
 
@@ -49,19 +52,18 @@ set hlsearch            " hihg light the research
 
 set hidden              " permet ouvrir un autre buffer sans enregistrer les modif de suite
 
-set history=500
+set history=1000
 
 "if isdirectory($HOME . '/.vim/tmp') == 0
   ":silent !mkdir -p ~/.vim/tmp > /dev/null 2>&1
 "endif
 
-
-""" backup
-"set backup
-"set backupdir=~/.vim/tmp
-""set bex=.bak
-"set directory=~/.vim/tmp
-""set noswapfile
+"" backup
+set backup
+"set backupdir=~/tmp/vim
+"set bex=.bak
+"set directory=~/tmp/vim   " swap files
+set noswapfile            " It's 2012, Vim.
 
 set background=dark
 
@@ -232,7 +234,7 @@ if has("autocmd")
   let noweb_fold_code=1
 
   " automatically delete trailing DOS-returns and trailing whitespaces
-  autocmd BufWritePre *.c,*.h,*.y,*.yy,*.l,*.ll,*.C,*.cpp,*.hh,*.cc,*.hxx,*.cxx,*.hpp,*.java,*.rb,*.py,*.m4,*.pl,*.pm,*.js,.vimrc silent! %s/[\r \t]\+$//
+  autocmd BufWritePre *.c,*.h,*.y,*.yy,*.l,*.ll,*.C,*.cpp,*.hh,*.cc,*.hxx,*.cxx,*.hpp,*.java,*.rb,*.py,*.m4,*.pl,*.pm,*.js,.vimrc,*.sql silent! %s/[\r \t]\+$//
 
 endif
 
@@ -338,5 +340,11 @@ map <up> <nop>
 map <down> <nop>
 map <left> <nop>
 map <right> <nop>
+
+
+"" Plugin tslime
+vmap <C-c><C-c> <Plug>SendSelectionToTmux
+nmap <C-c><C-c> <Plug>NormalModeSendToTmux
+nmap <C-c>r <Plug>SetTmuxVars
 
 " vim: set ts=2 sw=2 tw=78 et :
