@@ -44,6 +44,7 @@
   # When branching off a remote branch, automatically let the local branch track the remote branch:
   whitespace = trailing-space,space-before-tab
   excludesfile = ~/.gitignore
+  editor = vim
 
 [user]
 	email = yannick.drant@gmail.com

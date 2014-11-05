@@ -240,7 +240,7 @@ if has("autocmd")
   let noweb_fold_code=1
 
   " automatically delete trailing DOS-returns and trailing whitespaces
-  autocmd BufWritePre *.c,*.h,*.y,*.yy,*.l,*.ll,*.C,*.cpp,*.hh,*.cc,*.hxx,*.cxx,*.hpp,*.java,*.rb,*.py,*.m4,*.pl,*.pm,*.js,.vimrc,*.sql silent! %s/[\r \t]\+$//
+  autocmd BufWritePre *.c,*.h,*.y,*.yy,*.l,*.ll,*.C,*.cpp,*.hh,*.cc,*.hxx,*.cxx,*.hpp,*.html,*.java,*.rb,*.py,*.m4,*.pl,*.pm,*.js,.vimrc,*.sql silent! %s/[\r \t]\+$//
 
 endif
 
