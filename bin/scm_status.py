@@ -18,9 +18,9 @@ from subprocess import Popen, PIPE
 ESC = "\e"
 color_idx = {'0': 2, '16': 1, '256': 0}
 color = {
-    "header": ["[%(scm)s:" + ESC + "[01;38;05;254m%(branche)s" + ESC + "[0m]",
-               "[%(scm)s:" + ESC + "[5;37m%(branche)s" + ESC + "[0m]",
-               "[%(scm)s:%(branche)s]"],
+    "header": ["%(scm)s[" + ESC + "[01;38;05;254m%(branche)s" + ESC + "[0m]",
+               "%(scm)s[" + ESC + "[5;37m%(branche)s" + ESC + "[0m]",
+               "%(scm)s[%(branche)s]"],
     "footer": ["", "", ""],
     "untracked": [ESC + "[01;38;05;33m U", ESC + "[5;34m U", " U"],
     "added": [ESC + "[01;38;05;64m A", ESC + "[5;32m A", " A"],
