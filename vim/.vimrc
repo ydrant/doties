@@ -102,8 +102,8 @@ if has('gui_running')
   set guioptions-=L
   set guioptions-=r
   set guioptions-=R
-  "colorscheme solarized
-  colorscheme luna
+  colorscheme solarized
+  "colorscheme luna
 
   "" affiche les tab etc...
   " tab : tabulations
@@ -118,9 +118,9 @@ else
   " sans gui
   set t_Co=256
   set background=dark
-  "colorscheme solarized
-  colorscheme luna-term
-  let g:airline_theme='luna'
+  colorscheme solarized
+  "colorscheme luna-term
+  "let g:airline_theme='luna'
 endif
 set cursorline
 set foldlevel=100 " on ne veut pas que tout soit fermer à chaque fois
