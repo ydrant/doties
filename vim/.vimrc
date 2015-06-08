@@ -73,6 +73,20 @@ set noswapfile            " It's 2012, Vim.
 
 set background=dark
 
+set cursorline
+
+" affichage des lignes
+set number
+" nombre relatif
+set relativenumber
+
+" 5 cols utilisées
+set numberwidth=5
+
+" set list listchars=tab:>-,eol:¶
+" https://wincent.com/blog/making-vim-highlight-suspicious-characters
+set list listchars=nbsp:¬,tab:>-,eol:¶,extends:>,precedes:<,trail:-
+
 let maplocalleader = "!"
 if has('gui_running')
   " choix du theme
@@ -90,10 +104,6 @@ if has('gui_running')
 
   " surligne la ligne courrante
 
-  " affichage des lignes
-  set number
-  " 5 cols utilisées
-  set numberwidth=5
 
   " pas d'éléments sur la gui useless...
   set guioptions-=m
@@ -108,8 +118,6 @@ if has('gui_running')
   "" affiche les tab etc...
   " tab : tabulations
   " trail : espace en fin de ligne
-  " set list listchars=tab:>-,eol:¶
-  set list listchars=nbsp:¬,tab:>-,eol:¶,extends:>,precedes:<,trail:-
   set foldmethod=syntax
   set foldenable
   set foldcolumn=5
@@ -119,10 +127,7 @@ else
   set t_Co=256
   set background=dark
   colorscheme solarized
-  "colorscheme luna-term
-  "let g:airline_theme='luna'
 endif
-set cursorline
 set foldlevel=100 " on ne veut pas que tout soit fermer à chaque fois
 
 "" Edition
@@ -146,7 +151,7 @@ set showmode
 " Active le menu pour le menu dans la bar en bas
 set wildmenu
 "set wildmode=list:full
-set wildignore+=*.mp3,*.zip,*.wav,*.dat,*.png,*.jpg,*.gif,rake/**,solr/**,*.yml,tmp/**,*.log
+set wildignore+=*.mp3,*.zip,*.wav,*.dat,*.png,*.jpg,*.gif,rake/**,solr/**,*.yml,tmp/**,*.log,*~
 
 set pastetoggle=<F2>
 
@@ -171,6 +176,7 @@ if exists("+undofile")
 endif
 
 function! NumberToggle()
+  set number!
   set relativenumber!
 endfunc
 
@@ -179,7 +185,7 @@ nnoremap <C-l> :call NumberToggle()<cr>
   "au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 "endif
 
-let mapleader = ","
+"let mapleader = ","
 
 " gestion des fichiers
 "
@@ -196,7 +202,6 @@ if has("autocmd")
 
   " fichier python
   au FileType python set expandtab tabstop=4 softtabstop=4 shiftwidth=4 foldmethod=indent
-  let g:syntastic_python_checkers = ['flake8']
 
   " fichier Make
   au FileType make set noexpandtab shiftwidth=4
@@ -312,6 +317,7 @@ nnoremap Y y$
 cmap w!! %!sudo tee > /dev/null %
 
 
+set t_ut=
 
 " from http://vim.wikia.com/wiki/Modeline_magic
 " Append modeline after last line in buffer.
@@ -346,23 +352,39 @@ nmap <C-c>r <Plug>SetTmuxVars
 " Airline
 let g:airline_powerline_fonts = 1
 
-let g:syntastic_python_checkers = ['pylint', 'pyflakes', 'pep8']
-
+" deactivate arrow
 map <up> <nop>
 map <down> <nop>
 map <left> <nop>
 map <right> <nop>
 
 
-"" Plugin tslime
-vmap <C-c><C-c> <Plug>SendSelectionToTmux
-nmap <C-c><C-c> <Plug>NormalModeSendToTmux
-nmap <C-c>r <Plug>SetTmuxVars
-
 " Syntastic
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_style_error_symbol = '✠'
-let g:syntastic_warning_symbol = '∆'
-let g:syntastic_style_warning_symbol = '≈'
-set t_ut=
-" vim: set ts=2 sw=2 tw=78 et :
+let g:syntastic_error_symbol = 'x'
+let g:syntastic_style_error_symbol = '+'
+let g:syntastic_warning_symbol = '!'
+let g:syntastic_style_warning_symbol = '='
+let g:syntastic_python_checkers = ['pylint', 'pyflakes', 'pep8']
+
+" Testing
+
+" clean the other line
+let mapleader = "\<Space>"
+set backspace=2 " make backspace work like most other apps
+" j
+" Copy & paste to system clipboard with <Space>p and <Space>y:
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
+
+vnoremap <silent> y y`]
+vnoremap <silent> p p`]
+nnoremap <silent> p p`]
+
+" Map Ctrl-A -> Start of line, Ctrl-E -> End of line
+map <C-a> <Home>
+map <C-e> <End>
+"" vim: set ts=2 sw=2 tw=78 et :
