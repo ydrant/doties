@@ -84,7 +84,7 @@ esac
 export PATH=/home/yannick/anaconda/bin:~/bin:$PATH
 
 # couleur ls
-eval `dircolors ~/.dir_colors/dircolors.256dark`
+#eval `dircolors ~/.dir_colors/dircolors.256dark`
 
 # HL command line ala fish
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -109,3 +109,5 @@ fancy-ctrl-z () {
 }
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
+
+export PATH=/Users/ydr/Library/Miniconda/bin:/Users/ydr/Library/Python/2.7/bin:${PATH}

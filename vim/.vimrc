@@ -8,7 +8,8 @@ call vundle#rc()
 " required!
 Bundle 'gmarik/vundle'
 
-Bundle "bling/vim-airline"
+Bundle "vim-airline/vim-airline"
+Bundle 'vim-airline/vim-airline-themes'
 Bundle "scrooloose/syntastic"
 Bundle 'vim-scripts/comments.vim'
 Bundle 'vim-scripts/a.vim'
@@ -23,7 +24,7 @@ Bundle 'ekalinin/Dockerfile.vim'
 " Build this extension
 " cd ~/.vim/bundle/YouCompleteMe
 " ./install.sh --clang-completer
-Bundle 'Valloric/YouCompleteMe'
+" Bundle 'Valloric/YouCompleteMe'
 
 Bundle 'kien/ctrlp.vim'
 
@@ -122,12 +123,11 @@ if has('gui_running')
   set foldenable
   set foldcolumn=5
 
-else
-  " sans gui
-  set t_Co=256
-  set background=dark
-  colorscheme solarized
 endif
+  " sans gui
+set t_Co=16
+set background=dark
+colorscheme solarized
 set foldlevel=100 " on ne veut pas que tout soit fermer à chaque fois
 
 "" Edition

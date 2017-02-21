@@ -24,5 +24,3 @@ zsh/zshrc=.zshrc
 zsh/prezto/=.zprezto
 zsh=.zsh
 
-# psql
-psql/psqlrc=.psqlrc
